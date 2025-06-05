@@ -28,3 +28,72 @@ const res3 = palindrome("abba");
 console.log(res3);
 const result = palindrome("noida");
 console.log(result);
+
+///**
+//  * Program to check if a string is a palindrome without using array methods
+// * A palindrome reads the same forwards and backwards (e.g., "madam", "racecar")
+// */
+
+function isPalindrome(str) {
+   // Convert string to lowercase and remove non-alphanumeric characters
+   let cleanStr = '';
+   for (let i = 0; i < str.length; i++) {
+       const char = str[i].toLowerCase();
+       if ((char >= 'a' && char <= 'z') || (char >= '0' && char <= '9')) {
+           cleanStr += char;
+       }
+   }
+
+   // Use two pointers to check palindrome
+   let left = 0;
+   let right = cleanStr.length - 1;
+
+   while (left < right) {
+       if (cleanStr[left] !== cleanStr[right]) {
+           return false;
+       }
+       left++;
+       right--;
+   }
+   return true;
+}
+
+// Test cases
+console.log("Palindrome Check Results:");
+console.log("madam:", isPalindrome("madam"));           // true
+console.log("racecar:", isPalindrome("racecar"));       // true
+console.log("hello:", isPalindrome("hello"));           // false
+console.log("A man, a plan, a canal: Panama:", isPalindrome("A man, a plan, a canal: Panama")); // true
+console.log("12321:", isPalindrome("12321"));           // true
+console.log("Was it a car or a cat I saw?:", isPalindrome("Was it a car or a cat I saw?")); // true
+
+//palindrome number
+// * last digit :n % 10
+// *remove last digit : n/10
+// Example 1:
+
+// Input: x = 121
+// Output: true
+// Explanation: 121 reads as 121 from left to right and from right to left.
+// Example 2:
+
+// Input: x = -121
+// Output: false
+// Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+// Example 3:
+
+// Input: x = 10
+// Output: false
+// Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
+const isPalindrome = function(x) {
+    if(x<0) return false
+    let xCopy=x
+    let rev=0;
+    while(x>0){
+        let rem=x%10;
+        rev=(10*rev)+rem
+        x=Math.floor(x/10)
+    }
+    if(rev===xCopy) {return true}
+    else{ return false}
+};
